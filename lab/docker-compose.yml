@@ -1,0 +1,21 @@
+name: webminh10
+
+services:
+  webmin:
+    image: webmin-lab:2.670
+    ports:
+      - "127.0.0.1:18430:10000"
+    volumes:
+      - ./entrypoint.sh:/lab-entrypoint.sh:ro
+    entrypoint: ["/bin/bash", "/lab-entrypoint.sh"]
+    mem_limit: 512m
+    init: true
+    labels:
+      lab: WEBMIN-H10-FILEMIN-CPIO
+    restart: "no"
+    networks:
+      - webminh10
+
+networks:
+  webminh10:
+    driver: bridge
